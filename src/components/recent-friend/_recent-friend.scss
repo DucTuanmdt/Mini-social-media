@@ -1,0 +1,64 @@
+@import "../../styles/variable.scss";
+@import "../../styles/util.scss";
+
+.recent-friend-container {
+  padding: 0 20px;
+  margin-top: 20px;
+
+  .friend-title {
+    margin-bottom: 5px;
+  }
+  .friends-quantity {
+    margin-bottom: 10px;
+    font-weight: 300;
+  }
+
+  .list-friend {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      border-radius: 5px;
+    }
+    .friend-name {
+      text-align: center;
+      margin-top: 5px;
+      font-weight: 500;
+    }
+  }
+
+  .button-see-more {
+    width: 100%;
+    font-weight: 500;
+  }
+}
+
+@media screen and (min-width: $large-mobile) {
+  .recent-friend-container {
+    .list-friend {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+@media screen and (min-width: $min-tablet) {
+  .recent-friend-container {
+    .list-friend {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .button-see-more {
+      width: 100%;
+      font-size: 16px;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+@import "../../styles/variable.scss";
+
+.my-profile-container {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: $min-tablet) {
+  .my-profile-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -1,0 +1,93 @@
+@import "../../styles/variable.scss";
+@import "../../styles/util.scss";
+
+.post-container {
+  @include card-shadow;
+  margin: 20px 0px;
+  padding: 20px 20px 0;
+
+  .post-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    .name {
+      font-weight: bold;
+      font-size: 14px;
+      margin: 10px;
+    }
+    .post-time {
+      font-size: 12px;
+    }
+  }
+
+  .content {
+    margin-bottom: 10px;
+    .text-content {
+      margin: 10px 0;
+    }
+    .post-image {
+      display: block;
+      margin: auto;
+      max-width: 100%;
+      object-fit: cover;
+      max-height: 400px;
+    }
+  }
+
+  .post-info {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #cfd8dc;
+    .like-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .comment-quantity {
+      flex: 1;
+      text-align: right;
+    }
+  }
+
+  .post-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 0;
+    color: #424242;
+
+    .action-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 10px 10px;
+      transition: 0.2s;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      &:hover {
+        background-color: $background-hover;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $min-tablet) {
+  .post-container {
+    .post-action {
+      .action-item {
+        gap: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+      }
+    }
+  }
+}
