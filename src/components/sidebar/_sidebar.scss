@@ -2,15 +2,14 @@
 @import "../../styles/util.scss";
 
 .sidebar {
+  @include modern-scroll;
+
   padding: 0 20px;
   height: calc(100vh - 50px);
   position: sticky;
   top: 50px;
   transition: 0.2s;
-  overflow: hidden;
-  &:hover {
-    overflow-y: auto;
-  }
+  overflow-y: auto;
 
   .list-container {
     list-style: none;
@@ -37,34 +36,38 @@
     margin: 10px 0;
     border: none;
     height: 1px;
-    background-color: #cfd8dc;
+    background-color: $border-light;
   }
 
-  .best-friend {
+  .list-short-curt {
+    margin-top: 10px;
+  }
+
+  .short-curt-title {
+    font-weight: 500;
+    color: $dark-grey;
+    margin-top: 20px;
+  }
+  .shorcurt-item {
     display: flex;
     align-items: center;
     margin: 15px 0;
     img {
-      width: 30px;
-      height: 30px;
+      width: 45px;
+      height: 45px;
       object-fit: cover;
-      border-radius: 50%;
-      border-radius: 2px solid #cfd8dc;
+      border-radius: 10px;
     }
     .name {
+      text-transform: capitalize;
+      font-weight: 500;
       margin-left: 10px;
-      @include text-ellipsis(150px);
     }
   }
 
-  &::-webkit-scrollbar {
-    width: 5px;
-  }
-  &::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-color: rgb(179, 179, 179);
+  .button-see-more {
+    margin: 0 auto 20px;
+    display: block;
+    background-color: $border-light;
   }
 }

@@ -1,5 +1,6 @@
 import "./_login.scss";
 import Avatar from "../../components/avatar/Avatar";
+import { Link } from "react-router-dom";
 function Register() {
   return (
     <div className="container-wrapper login-container">
@@ -30,8 +31,13 @@ function Register() {
         />
         <button className="common-button button-login">Register</button>
         <hr className="common-break-line" />
-        <p className="text-link">Already had account?</p>
-        <button className="common-button button-register">Login</button>
+        <p className="text-link">
+          <Link to="/login">Already had account?</Link>
+        </p>
+
+        <Link to="/login">
+          <button className="common-button button-register">Login</button>
+        </Link>
       </div>
     </div>
   );

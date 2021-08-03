@@ -1,14 +1,17 @@
 import "./_account-name.scss";
 import Avatar from "../avatar/Avatar";
+import { Link } from "react-router-dom";
 
-function AccountName({ url, name, isOnline }) {
+function AccountName({ id, name, avatar, isOnline, noMargin, size }) {
   return (
-    <div className="account-name">
+    <div className={`account-name ${noMargin ? "no-margin" : ""}`}>
       <div className="avatar-container">
-        <Avatar></Avatar>
+        <Avatar url={avatar} size={size}></Avatar>
         {isOnline && <div className="online-status"></div>}
       </div>
-      <span className="account-name">{name}</span>
+      <Link to={`/profile/${id}`} className="user-name">
+        {name}
+      </Link>
     </div>
   );
 }

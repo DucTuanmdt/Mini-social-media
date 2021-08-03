@@ -1,8 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
 @import "./variable.scss";
 @import "./util.scss";
 
+* {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
 body {
   font-size: 14px;
+  color: black;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 
 .container-wrapper {
@@ -17,6 +30,7 @@ body {
   width: 30px;
   height: 30px;
   border-radius: 50%;
+  border: none;
   display: grid;
   place-items: center;
   cursor: pointer;
@@ -31,7 +45,7 @@ body {
   border-radius: 5px;
   padding: 10px 20px;
   transition: 0.2s;
-  background-color: $light-background;
+  background-color: $background-light;
   cursor: pointer;
   font-weight: 500;
 
@@ -40,6 +54,10 @@ body {
   }
 
   &:hover {
+    opacity: 0.8;
+  }
+
+  &:disabled {
     opacity: 0.8;
   }
 }

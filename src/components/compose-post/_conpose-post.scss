@@ -7,6 +7,7 @@
   padding: 20px;
   border-radius: 4px;
 
+  @include loader;
   @include card-shadow;
 
   .header {
@@ -35,6 +36,11 @@
     .item {
       display: flex;
       align-items: center;
+      cursor: pointer;
+      transition: 0.2s;
+      &:hover {
+        opacity: 0.8;
+      }
     }
 
     .photo {

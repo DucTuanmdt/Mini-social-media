@@ -1,7 +1,9 @@
 import "./_rightbar.scss";
 import AccountName from "../account-name/AccountName";
+import { useSelector } from "react-redux";
 
 function Rightbar() {
+  const onlineFriends = useSelector((state) => state.users.onlineFriends);
   return (
     <div className="rightbar-container">
       <div className="birday-section">
@@ -19,15 +21,16 @@ function Rightbar() {
         <p className="online-friend-label">
           <strong>Online friends</strong>
         </p>
-        <AccountName name="Mai Duc Tuan" isOnline={true}></AccountName>
-        <AccountName name="Mai Duc Tuan" isOnline={true}></AccountName>
-        <AccountName name="Mai Duc Tuan" isOnline={true}></AccountName>
-        <AccountName name="Mai Duc Tuan" isOnline={true}></AccountName>
-        <AccountName name="Mai Duc Tuan" isOnline={true}></AccountName>
-        <AccountName name="Mai Duc Tuan" isOnline={true}></AccountName>
-        <AccountName name="Mai Duc Tuan" isOnline={true}></AccountName>
-        <AccountName name="Mai Duc Tuan" isOnline={true}></AccountName>
-        <AccountName name="Mai Duc Tuan" isOnline={true}></AccountName>
+        {onlineFriends.length > 0 &&
+          onlineFriends.map(({ id, name, avatar }, index) => (
+            <AccountName
+              key={index}
+              id={id}
+              name={name}
+              avatar={avatar}
+              isOnline={true}
+            ></AccountName>
+          ))}
       </div>
     </div>
   );

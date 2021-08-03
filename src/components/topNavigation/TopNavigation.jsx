@@ -5,22 +5,35 @@ import {
   Menu,
   ChatBubbleOutline,
   NotificationsOutlined,
+  ArrowDropDown,
 } from "@material-ui/icons";
-
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { clearUser } from "../../utils/user";
 import usePathname from "../../hooks/usePathName";
+
+import AccountName from "../account-name/AccountName";
 
 function TopNavigation() {
   const currentPath = usePathname();
+  const currentUser = useSelector((state) => state.authen.currentUser);
 
   function isShow() {
     return !["/login", "/register"].includes(currentPath);
+  }
+
+  function handleLogout() {
+    clearUser();
+    window.location.href = "/login";
   }
 
   return (
     isShow() && (
       <div className="top-navigation">
         <div className="logo">
-          <img src="/assets/logo-react.png" alt="Logo" />
+          <Link to="/">
+            <img src="/assets/logo-react.png" alt="Logo" />
+          </Link>
         </div>
         <div className="search-bar">
           <Search />
@@ -42,15 +55,24 @@ function TopNavigation() {
           <NotificationsOutlined />
           <div className="badge">3</div>
         </div>
-        <div className="profile">
-          <img
-            src="https://cdn.fakercloud.com/avatars/jeffgolenski_128.jpg"
-            alt="profile"
-          />
-          <span className="name">Mark Zuc Duz</span>
-        </div>
-        <div className="menu tab-item">
-          <Menu />
+
+        <AccountName
+          className="profile"
+          {...currentUser}
+          noMargin
+          size="small"
+        ></AccountName>
+
+        <div className="menu-button button-icon">
+          <ArrowDropDown />
+          <ul className="menu-option list-reset">
+            <li className="item">Give feedback</li>
+            <li className="item">Setting</li>
+            <li className="item">Help &amp; Support</li>
+            <li className="item" onClick={handleLogout}>
+              Logout
+            </li>
+          </ul>
         </div>
       </div>
     )

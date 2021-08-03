@@ -29,6 +29,7 @@
   .cover-image {
     width: 100%;
     position: relative;
+    aspect-ratio: 16/9;
     img {
       border: 5px;
       aspect-ratio: 16/9;
@@ -64,12 +65,18 @@
     position: relative;
     top: -#{$profile-with / 2 - 4px};
     height: 0px;
+    padding: 0 20px;
+  }
+
+  .user-quot {
+    text-align: center;
   }
 }
 
 @media screen and (min-width: $min-tablet) {
   .profile-picture-container {
     .cover-image {
+      aspect-ratio: 5/2;
       img {
         border: 5px;
         aspect-ratio: 5/2;

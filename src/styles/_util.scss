@@ -31,3 +31,54 @@
     outline: none;
   }
 }
+
+@mixin modern-scroll {
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 5px;
+  }
+  &:hover {
+    &::-webkit-scrollbar-track {
+      background-color: $background-light;
+    }
+    &::-webkit-scrollbar-thumb {
+      border: 5px;
+      background-color: $border-light;
+    }
+  }
+}
+
+@mixin loader {
+  &.loading {
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(to right, $blue, $blue);
+      background-color: $background-light;
+      background-size: 30%;
+      background-repeat: repeat-y;
+      animation: local-loader ease-in 1s infinite;
+    }
+  }
+}
+@keyframes local-loader {
+  50% {
+    background-position: 150%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}

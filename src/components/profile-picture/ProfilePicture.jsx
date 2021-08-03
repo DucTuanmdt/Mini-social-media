@@ -1,27 +1,32 @@
 import "./_profile-picture.scss";
 import { CameraAltOutlined } from "@material-ui/icons";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 function ProfilePicture() {
+  const user = useSelector((state) => state.users.profileUser);
+  const loginedUser = useSelector((state) => state.authen.currentUser);
   return (
     <div className="profile-picture-container">
       <div className="cover-image">
-        <img
-          src="https://cdn.pixabay.com/photo/2021/07/12/19/43/swans-6421355_960_720.jpg"
-          alt="cover"
-        />
-        <button className="buttton-change-image">
-          <CameraAltOutlined />
-        </button>
+        <img src={user.coverImage} alt="cover" />
+        {loginedUser.id === user.id && (
+          <button className="buttton-change-image">
+            <CameraAltOutlined />
+          </button>
+        )}
       </div>
       <div className="profile-image">
-        <img src="/assets/avatar.jpg" alt="avatar" />
-        <button className="buttton-change-image">
-          <CameraAltOutlined />
-        </button>
+        <img src={user.avatar} alt="avatar" />
+        {loginedUser.id === user.id && (
+          <button className="buttton-change-image">
+            <CameraAltOutlined />
+          </button>
+        )}
       </div>
       <div className="user-info">
-        <h1 className="user-name">Mai Duc Tuan</h1>
-        <p className="user-quot">Hi every one!</p>
+        <h1 className="user-name">{user.name}</h1>
+        <p className="user-quot">{user.qoutSentence}</p>
       </div>
     </div>
   );

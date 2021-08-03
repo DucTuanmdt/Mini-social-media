@@ -11,7 +11,11 @@ import {
   SchoolOutlined,
 } from "@material-ui/icons";
 
+import { useSelector } from "react-redux";
+
 export default function Sidebar() {
+  const listShortCurt = useSelector((state) => state.users.shortCurts);
+
   return (
     <div className="sidebar">
       <ul className="list-container">
@@ -53,202 +57,23 @@ export default function Sidebar() {
         </li>
       </ul>
       <hr />
-      {/* <ul className="sidebarFriendList">
-        {Users.map((u) => (
-          <CloseFriend key={u.id} user={u} />
-        ))}
-      </ul> */}
-      <ul className="list-container">
-        <li>
-          <div className="best-friend">
-            <img
-              src="https://cdn.fakercloud.com/avatars/jeffgolenski_128.jpg"
-              alt="friends"
-            />
-            <span className="name">My Best Friend</span>
-          </div>
-        </li>
-        <li>
-          <div className="best-friend">
-            <img
-              src="https://cdn.fakercloud.com/avatars/jeffgolenski_128.jpg"
-              alt="friends"
-            />
-            <span className="name">My Best Friend</span>
-          </div>
-        </li>
-        <li>
-          <div className="best-friend">
-            <img
-              src="https://cdn.fakercloud.com/avatars/jeffgolenski_128.jpg"
-              alt="friends"
-            />
-            <span className="name">My Best Friend</span>
-          </div>
-        </li>
-        <li>
-          <div className="best-friend">
-            <img
-              src="https://cdn.fakercloud.com/avatars/jeffgolenski_128.jpg"
-              alt="friends"
-            />
-            <span className="name">My Best Friend</span>
-          </div>
-        </li>
-        <li>
-          <div className="best-friend">
-            <img
-              src="https://cdn.fakercloud.com/avatars/jeffgolenski_128.jpg"
-              alt="friends"
-            />
-            <span className="name">My Best Friend</span>
-          </div>
-        </li>
-        <li>
-          <div className="best-friend">
-            <img
-              src="https://cdn.fakercloud.com/avatars/jeffgolenski_128.jpg"
-              alt="friends"
-            />
-            <span className="name">My Best Friend</span>
-          </div>
-        </li>
-        <li>
-          <div className="best-friend">
-            <img
-              src="https://cdn.fakercloud.com/avatars/jeffgolenski_128.jpg"
-              alt="friends"
-            />
-            <span className="name">My Best Friend</span>
-          </div>
-        </li>
-        <li>
-          <div className="best-friend">
-            <img
-              src="https://cdn.fakercloud.com/avatars/jeffgolenski_128.jpg"
-              alt="friends"
-            />
-            <span className="name">My Best Friend</span>
-          </div>
-        </li>
-        <li>
-          <div className="best-friend">
-            <img
-              src="https://cdn.fakercloud.com/avatars/jeffgolenski_128.jpg"
-              alt="friends"
-            />
-            <span className="name">My Best Friend</span>
-          </div>
-        </li>
-        <li>
-          <div className="best-friend">
-            <img
-              src="https://cdn.fakercloud.com/avatars/jeffgolenski_128.jpg"
-              alt="friends"
-            />
-            <span className="name">My Best Friend</span>
-          </div>
-        </li>
-        <li>
-          <div className="best-friend">
-            <img
-              src="https://cdn.fakercloud.com/avatars/jeffgolenski_128.jpg"
-              alt="friends"
-            />
-            <span className="name">My Best Friend</span>
-          </div>
-        </li>
-        <li>
-          <div className="best-friend">
-            <img
-              src="https://cdn.fakercloud.com/avatars/jeffgolenski_128.jpg"
-              alt="friends"
-            />
-            <span className="name">My Best Friend</span>
-          </div>
-        </li>
-        <li>
-          <div className="best-friend">
-            <img
-              src="https://cdn.fakercloud.com/avatars/jeffgolenski_128.jpg"
-              alt="friends"
-            />
-            <span className="name">My Best Friend</span>
-          </div>
-        </li>
-        <li>
-          <div className="best-friend">
-            <img
-              src="https://cdn.fakercloud.com/avatars/jeffgolenski_128.jpg"
-              alt="friends"
-            />
-            <span className="name">My Best Friend</span>
-          </div>
-        </li>
-        <li>
-          <div className="best-friend">
-            <img
-              src="https://cdn.fakercloud.com/avatars/jeffgolenski_128.jpg"
-              alt="friends"
-            />
-            <span className="name">My Best Friend</span>
-          </div>
-        </li>
-        <li>
-          <div className="best-friend">
-            <img
-              src="https://cdn.fakercloud.com/avatars/jeffgolenski_128.jpg"
-              alt="friends"
-            />
-            <span className="name">My Best Friend</span>
-          </div>
-        </li>
-        <li>
-          <div className="best-friend">
-            <img
-              src="https://cdn.fakercloud.com/avatars/jeffgolenski_128.jpg"
-              alt="friends"
-            />
-            <span className="name">My Best Friend</span>
-          </div>
-        </li>
-        <li>
-          <div className="best-friend">
-            <img
-              src="https://cdn.fakercloud.com/avatars/jeffgolenski_128.jpg"
-              alt="friends"
-            />
-            <span className="name">My Best Friend</span>
-          </div>
-        </li>
-        <li>
-          <div className="best-friend">
-            <img
-              src="https://cdn.fakercloud.com/avatars/jeffgolenski_128.jpg"
-              alt="friends"
-            />
-            <span className="name">My Best Friend</span>
-          </div>
-        </li>
-        <li>
-          <div className="best-friend">
-            <img
-              src="https://cdn.fakercloud.com/avatars/jeffgolenski_128.jpg"
-              alt="friends"
-            />
-            <span className="name">My Best Friend</span>
-          </div>
-        </li>
-        <li>
-          <div className="best-friend">
-            <img
-              src="https://cdn.fakercloud.com/avatars/jeffgolenski_128.jpg"
-              alt="friends"
-            />
-            <span className="name">My Best Friend</span>
-          </div>
-        </li>
-      </ul>
+
+      {listShortCurt.length > 0 && (
+        <>
+          <p className="short-curt-title">Your Shortcurts</p>
+          <ul className="list-container list-short-curt">
+            {listShortCurt.slice(0, 10).map(({ image, text }, index) => (
+              <li key={index}>
+                <div className="shorcurt-item">
+                  <img src={image} alt="friends" />
+                  <span className="name">{text}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <button className="common-button button-see-more">See more</button>
+        </>
+      )}
     </div>
   );
 }

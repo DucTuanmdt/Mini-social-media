@@ -7,18 +7,75 @@ import {
   LocalOfferOutlined,
 } from "@material-ui/icons";
 
-function ComposePost() {
+import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+
+import { createPost } from "../../redux/actions/postAction";
+
+function ComposePost({ editMode, onUpdate, oldContent }) {
+  const currentUser = useSelector((state) => state.authen.currentUser);
+  const loading = useSelector((state) => state.post.loading);
+  const error = useSelector((state) => state.post.error);
+  const [postContent, setPostContent] = useState("");
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // reset post content after created success
+    if (!loading && !error) {
+      setPostContent("");
+    }
+  }, [loading]);
+
+  useEffect(() => {
+    if (editMode) {
+      setPostContent(oldContent);
+    }
+  }, []);
+
+  function handleInput(event) {
+    setPostContent(event.target.value);
+  }
+
+  function handleCreatePost() {
+    if (postContent) {
+      dispatch(
+        createPost({
+          content: postContent,
+          userId: currentUser.id,
+          totalLike: 0,
+          haveImage: 0,
+          timeCreated: new Date().toString(),
+        })
+      );
+    }
+  }
+
+  function handleUpdatePost() {
+    onUpdate({
+      content: postContent,
+    });
+  }
+
   return (
-    <div className="compose-post">
-      <div className="header">
-        <Avatar size="medium" />
-        <span className="question">What's on your mind, John? </span>
-      </div>
+    <div className={`compose-post ${loading ? "loading" : ""}`}>
+      {currentUser && currentUser.id ? (
+        <div className="header">
+          <Avatar size="medium" url={currentUser.avatar} />
+          <span className="question">
+            What's on your mind, {currentUser.name}?{" "}
+          </span>
+        </div>
+      ) : (
+        <></>
+      )}
       <div className="content">
         <input
           className="post-input"
           type="text"
           placeholder="Let's everyone know here"
+          onInput={handleInput}
+          value={postContent}
         />
       </div>
       <ul className="aditional-option">
@@ -40,7 +97,13 @@ function ComposePost() {
         </li>
       </ul>
       <div className="submit-container">
-        <button className="button-submit">Post</button>
+        <button
+          className="button-submit common-button"
+          onClick={editMode ? handleUpdatePost : handleCreatePost}
+          disabled={!postContent.length}
+        >
+          {editMode ? "Update" : "Post"}
+        </button>
       </div>
     </div>
   );

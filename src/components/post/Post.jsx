@@ -6,32 +6,124 @@ import {
   ChatBubbleOutline,
   ShareOutlined,
 } from "@material-ui/icons";
-function Post() {
+import { formatTimeAgo, isValidDate } from "../../utils/format";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import SimpleDialog from "../SimpleDialog/SimpleDialog";
+import ComposePost from "../compose-post/ComposePost";
+import { deletePost, updatePost } from "../../redux/actions/postAction";
+
+function Post({
+  id,
+  user,
+  content,
+  totalLike,
+  totalComment,
+  image,
+  haveImage,
+  createdAt,
+  timeCreated,
+}) {
+  const [showEditPopup, setShowEditPopup] = useState(false);
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
+  const currentUser = useSelector((state) => state.authen.currentUser);
+  const loading = useSelector((state) => state.post.loading);
+  const timePosted = isValidDate(timeCreated) ? timeCreated : createdAt;
+  const author = user || currentUser;
+  const dispatch = useDispatch();
+  const [localLoading, setLocalLoading] = useState(false);
+
+  useEffect(() => {
+    if (!loading) {
+      setLocalLoading(false);
+    }
+  }, [loading]);
+
+  function handleDeletePost() {
+    setShowDeletePopup(true);
+  }
+
+  function handleCloseDeletePopup() {
+    setShowDeletePopup(false);
+  }
+
+  function handleEditPost() {
+    setShowEditPopup(true);
+  }
+
+  function handleCloseEditopup() {
+    setShowEditPopup(false);
+  }
+
+  function doDeletePost() {
+    setLocalLoading(true);
+    dispatch(
+      deletePost({
+        id: id,
+        userId: author.id,
+      })
+    );
+    handleCloseDeletePopup();
+  }
+
+  function doUpdatePost(data) {
+    setLocalLoading(true);
+    dispatch(
+      updatePost({
+        ...data,
+        id,
+        userId: author.id,
+      })
+    );
+    handleCloseEditopup();
+  }
+
   return (
-    <div className="post-container">
+    <div className={`post-container ${localLoading ? "loading" : ""}`}>
       <div className="post-top">
         <div className="user-info">
-          <Avatar></Avatar>
-          <span className="name">Harry Potter</span>
-          <span className="post-time">5 minutes</span>
+          <Avatar url={author.avatar}></Avatar>
+          <Link className="name" to={`/profile/${author.id}`}>
+            {author.name}
+          </Link>
+          <span className="post-time">{formatTimeAgo(timePosted)}</span>
         </div>
-        <div className="action button-icon">
+        <div className="more-option button-icon">
           <MoreHorizOutlined />
+          <ul className="post-menu list-reset">
+            {author.id === currentUser.id && (
+              <>
+                <li className="item" onClick={handleEditPost}>
+                  Edit
+                </li>
+                <li className="item" onClick={handleDeletePost}>
+                  Delete
+                </li>
+              </>
+            )}
+            <li className="item">Embed</li>
+            {author.id !== currentUser.id && (
+              <>
+                <li className="item">Hide post</li>
+                <li className="item">Report</li>
+              </>
+            )}
+          </ul>
         </div>
       </div>
       <div className="content">
-        <p className="text-content">Hey! This is my first post :V</p>
-        <img
-          className="post-image"
-          src="http://placeimg.com/640/480/technics"
-          alt="Post"
-        />
+        <p className="text-content">{content}</p>
+        {/* !Temple logic to display/hide image */}
+        {haveImage > 50 && (
+          <img className="post-image" src={image} alt="Post" />
+        )}
       </div>
       <div className="post-bottom">
         <div className="post-info">
           <img className="like-icon" src="/assets/like.png" alt="like" />
-          <span className="like-quantity">541 people like it</span>
-          <div className="comment-quantity">147 comments</div>
+          <span className="like-quantity">{totalLike} people like it</span>
+          <div className="comment-quantity">{totalComment} comments</div>
         </div>
         <div className="post-action">
           <div className="action-item">
@@ -48,6 +140,29 @@ function Post() {
           </div>
         </div>
       </div>
+      <SimpleDialog show={showDeletePopup} onClose={handleCloseDeletePopup}>
+        <div className="confirm-delete">
+          <p className="question">Do you want to delete this post?</p>
+          <div className="action">
+            <button className="common-button" onClick={doDeletePost}>
+              Delete
+            </button>
+            <button className="common-button button-cancel">Cancel</button>
+          </div>
+        </div>
+      </SimpleDialog>
+      <SimpleDialog
+        show={showEditPopup}
+        onClose={handleCloseEditopup}
+        size="large"
+        noPadding={true}
+      >
+        <ComposePost
+          editMode={true}
+          onUpdate={doUpdatePost}
+          oldContent={content}
+        ></ComposePost>
+      </SimpleDialog>
     </div>
   );
 }
