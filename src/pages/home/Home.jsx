@@ -43,6 +43,7 @@ function Home() {
         window.innerHeight + window.scrollY >=
         document.body.offsetHeight - 1000
       ) {
+        // TODO: temporary disable to avoid api is call too much
         throttleLoadMore();
       }
     }

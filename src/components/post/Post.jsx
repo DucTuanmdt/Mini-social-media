@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SimpleDialog from "../SimpleDialog/SimpleDialog";
 import ComposePost from "../compose-post/ComposePost";
+import PostComment from "../post-comment/PostComment";
 import { deletePost, updatePost } from "../../redux/actions/postAction";
 
 function Post({
@@ -24,6 +25,7 @@ function Post({
   haveImage,
   createdAt,
   timeCreated,
+  comments,
 }) {
   const [showEditPopup, setShowEditPopup] = useState(false);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
@@ -140,6 +142,10 @@ function Post({
           </div>
         </div>
       </div>
+      {/* <div className="comment-section">
+        <PostComment></PostComment>
+      </div> */}
+
       <SimpleDialog show={showDeletePopup} onClose={handleCloseDeletePopup}>
         <div className="confirm-delete">
           <p className="question">Do you want to delete this post?</p>
@@ -147,7 +153,12 @@ function Post({
             <button className="common-button" onClick={doDeletePost}>
               Delete
             </button>
-            <button className="common-button button-cancel">Cancel</button>
+            <button
+              className="common-button button-cancel"
+              onClick={handleCloseDeletePopup}
+            >
+              Cancel
+            </button>
           </div>
         </div>
       </SimpleDialog>

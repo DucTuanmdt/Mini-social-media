@@ -99,14 +99,14 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding: 10px 0;
     color: #424242;
+    padding: 5px 0;
 
     .action-item {
       display: flex;
       align-items: center;
       gap: 5px;
-      padding: 10px 10px;
+      padding: 5px 10px;
       transition: 0.2s;
       border-radius: 5px;
       cursor: pointer;
@@ -129,6 +129,11 @@
         background-color: $blue;
       }
     }
+  }
+
+  .comment-section {
+    border-top: 1px solid #cfd8dc;
+    padding: 10px 0;
   }
 }
 

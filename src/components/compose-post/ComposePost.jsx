@@ -17,10 +17,14 @@ function ComposePost({ editMode, onUpdate, oldContent }) {
   const loading = useSelector((state) => state.post.loading);
   const error = useSelector((state) => state.post.error);
   const [postContent, setPostContent] = useState("");
+  const [localLoading, setLocalLoading] = useState(false);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (!loading) {
+      setLocalLoading(false);
+    }
     // reset post content after created success
     if (!loading && !error) {
       setPostContent("");
@@ -39,6 +43,7 @@ function ComposePost({ editMode, onUpdate, oldContent }) {
 
   function handleCreatePost() {
     if (postContent) {
+      setLocalLoading(true);
       dispatch(
         createPost({
           content: postContent,
@@ -58,7 +63,7 @@ function ComposePost({ editMode, onUpdate, oldContent }) {
   }
 
   return (
-    <div className={`compose-post ${loading ? "loading" : ""}`}>
+    <div className={`compose-post ${localLoading ? "loading" : ""}`}>
       {currentUser && currentUser.id ? (
         <div className="header">
           <Avatar size="medium" url={currentUser.avatar} />
