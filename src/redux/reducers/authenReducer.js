@@ -9,6 +9,7 @@ function authenReducer(state = initialState, action) {
   switch (action.type) {
     case AUTHEN_ACTION.MAKE_LOGIN_REQUESTED:
     case AUTHEN_ACTION.GET_USER_REQUESTED:
+    case AUTHEN_ACTION.REGISTER_ACCOUNT_REQUESTED:
       return {
         ...state,
         loading: true,
@@ -16,6 +17,7 @@ function authenReducer(state = initialState, action) {
 
     case AUTHEN_ACTION.MAKE_LOGIN_FAILED:
     case AUTHEN_ACTION.GET_USER_FAILED:
+    case AUTHEN_ACTION.REGISTER_ACCOUNT_FAILED:
       return {
         ...state,
         loading: false,
@@ -30,6 +32,7 @@ function authenReducer(state = initialState, action) {
 
     case AUTHEN_ACTION.GET_USER_SUCCESS:
     case AUTHEN_ACTION.UPDATE_CURRENT_USER:
+    case AUTHEN_ACTION.REGISTER_ACCOUNT_SUCCESS:
       return {
         ...state,
         currentUser: action.payload,

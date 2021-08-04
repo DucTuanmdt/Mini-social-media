@@ -50,6 +50,24 @@
     background-color: $green;
     color: $white;
   }
+
+  .register-message {
+    .message {
+      text-align: center;
+    }
+    .action {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+
+      .button-action {
+        color: $white;
+        background-color: $blue;
+        padding: 10px 30px;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: $min-tablet) {

@@ -1,9 +1,24 @@
 import { AUTHEN_ACTION } from "../types";
 import { call, put, takeEvery } from "redux-saga/effects";
 import { getUserApi } from "../../services/apiClient";
-import { loginApi } from "../../services/authen";
+import { loginApi, registerApi } from "../../services/authen";
 
 import { setLocalUser, getLocalUser } from "../../utils/user";
+
+function* register(action) {
+  try {
+    const response = yield call(registerApi, action.input);
+    yield put({
+      type: AUTHEN_ACTION.REGISTER_ACCOUNT_SUCCESS,
+      payload: response,
+    });
+  } catch (error) {
+    yield put({
+      type: AUTHEN_ACTION.REGISTER_ACCOUNT_FAILED,
+      payload: error.message,
+    });
+  }
+}
 
 function* login(action) {
   try {
@@ -49,6 +64,7 @@ function* getCurrentUser() {
 }
 
 function* authenSaga() {
+  yield takeEvery(AUTHEN_ACTION.REGISTER_ACCOUNT_REQUESTED, register);
   yield takeEvery(AUTHEN_ACTION.MAKE_LOGIN_REQUESTED, login);
   yield takeEvery(AUTHEN_ACTION.GET_USER_REQUESTED, getCurrentUser);
 }
