@@ -28,20 +28,17 @@ function Home() {
   useEffect(() => {
     const length = listUser.length;
     if (length) {
-      setRemainUser(length - 1);
       const userId = listUser[length - 1].id;
       dispatch(getPostByUserId(userId));
+      setRemainUser(length - 2 - pageSize);
       loadMore(length - 2);
     }
   }, [listUser]);
 
   useEffect(() => {
+    loadMore();
+
     function handleScroll() {
-      console.log(
-        "CMN",
-        window.innerHeight + window.scrollY,
-        document.body.offsetHeight
-      );
       if (
         window.innerHeight + window.scrollY >=
         document.body.offsetHeight - 1000
@@ -52,18 +49,25 @@ function Home() {
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [remainUser]);
 
   function loadMore(length) {
     let maxSize = length || remainUser;
-    console.log("Load more", length, remainUser);
     if (maxSize > 0) {
       dispatch(loadMorePost({ listUser, pageSize, remainUser: maxSize }));
-      setRemainUser(maxSize - pageSize);
     }
   }
+
   // prevent call loadMore too many time, at least 5s per dispatch
-  const throttleLoadMore = throttling(loadMore, timeOut);
+  const throttleLoadMore = throttling(calculateNextPage, timeOut);
+
+  function calculateNextPage() {
+    let nextValue = remainUser - pageSize;
+    if (nextValue < 0) {
+      nextValue = 0;
+    }
+    setRemainUser(nextValue);
+  }
 
   return (
     <div className="home-container">

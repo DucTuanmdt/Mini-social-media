@@ -1,4 +1,4 @@
-import { AUTHEN_ACTION, POST_ACTION, USER_ACTION } from "../types";
+import { POST_ACTION, USER_ACTION } from "../types";
 
 const initialState = {
   listPost: [],
