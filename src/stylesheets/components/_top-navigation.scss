@@ -1,0 +1,129 @@
+.top-navigation {
+  display: flex;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.2);
+  height: 50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  gap: 10px;
+  z-index: 2;
+
+  .home,
+  .chat,
+  .notification {
+    display: none;
+  }
+
+  .logo img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #eceff1;
+    padding: 5px 10px;
+    border-radius: 20px;
+    flex: 1;
+    max-width: 400px;
+  }
+
+  .search-input {
+    font-size: 16px;
+    flex: 1;
+
+    @include input-reset;
+  }
+
+  .tab-item {
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 10px;
+    &:hover {
+      color: $link-hover;
+    }
+    position: relative;
+  }
+
+  .menu-button {
+    padding: 0;
+    background-color: $background-light;
+    position: relative;
+
+    &:hover {
+      .menu-option {
+        transform: scaleY(1);
+        z-index: 1;
+      }
+    }
+
+    .menu-option {
+      position: absolute;
+      top: 100%;
+      margin-top: 10px;
+      right: 0;
+      background: $white;
+      border-radius: 5px;
+      transform: scaleY(0);
+      transition-delay: 100ms;
+      display: flex;
+      flex-direction: column;
+      @include card-shadow;
+
+      .item {
+        width: 100%;
+        box-sizing: border-box;
+        white-space: nowrap;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-align: center;
+        &:hover {
+          background: $background-hover;
+        }
+      }
+    }
+  }
+  .account-name {
+    .user-name {
+      display: none;
+    }
+  }
+}
+
+@media screen and (min-width: $min-tablet) {
+  .top-navigation {
+    .home,
+    .chat,
+    .notification {
+      display: block;
+    }
+
+    .badge {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      color: $white;
+      background-color: $red;
+      display: grid;
+      place-content: center;
+      font-size: 10px;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+    }
+
+    .account-name {
+      .user-name {
+        display: inline-block;
+        padding-left: 5px;
+        @include text-ellipsis(150px);
+      }
+    }
+  }
+}

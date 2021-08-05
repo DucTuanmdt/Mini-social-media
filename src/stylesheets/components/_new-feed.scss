@@ -1,0 +1,10 @@
+.new-feed {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: $min-desktop) {
+  .new-feed {
+    padding-right: 0;
+  }
+}

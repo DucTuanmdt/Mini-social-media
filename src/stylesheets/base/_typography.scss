@@ -1,0 +1,10 @@
+body {
+  font-size: 14px;
+  color: $black;
+}
+
+@media screen and (min-width: $min-tablet) {
+  body {
+    font-size: 16px;
+  }
+}

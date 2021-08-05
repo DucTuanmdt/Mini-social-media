@@ -1,20 +1,17 @@
-import "./styles/_variable.scss";
-
 import { BrowserRouter, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getCurrentUser } from "./redux/actions/authenAction";
 import PrivateRoute from "./route/PrivateRoute";
 
-import Home from "./pages/home/Home";
-import TopNavigation from "./components/topNavigation/TopNavigation";
-import MyProfile from "./pages/profile/MyProfile";
-import Login from "./pages/login/Login";
-import Register from "./pages/login/Register";
-import NotFound from "./pages/not-found/NotFound";
-import HorizontalLoader from "./components/loader/HorizontalLoader";
+import Home from "./pages/Home";
+import TopNavigation from "./components/TopNavigation";
+import Profile from "./pages/Profile";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import NotFound from "./pages/NotFound";
+import HorizontalLoader from "./components/HorizontalLoader";
 
-import "./styles/_common.scss";
 import { getLocalUser } from "./utils/user";
 
 function App() {
@@ -61,7 +58,7 @@ function App() {
           path="/profile/:id"
           exact
           isAllow={isLogin}
-          component={MyProfile}
+          component={Profile}
         ></PrivateRoute>
         <PrivateRoute isAllow={isLogin} component={NotFound}></PrivateRoute>
       </Switch>

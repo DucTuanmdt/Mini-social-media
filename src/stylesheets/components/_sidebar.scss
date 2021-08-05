@@ -1,0 +1,70 @@
+.sidebar {
+  @include modern-scroll;
+
+  padding: 0 20px;
+  height: calc(100vh - 50px);
+  position: sticky;
+  top: 50px;
+  transition: 0.2s;
+  overflow-y: auto;
+
+  .list-container {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 20px;
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    @include text-link;
+  }
+  .item-text {
+    margin-left: 10px;
+  }
+  .show-more-button {
+    border: none;
+    background-color: #eceff1;
+    padding: 5px 20px;
+    border-radius: 5px;
+  }
+  hr {
+    margin: 10px 0;
+    border: none;
+    height: 1px;
+    background-color: $border-light;
+  }
+
+  .list-short-curt {
+    margin-top: 10px;
+  }
+
+  .short-curt-title {
+    font-weight: 500;
+    color: $dark-grey;
+    margin-top: 20px;
+  }
+  .shorcurt-item {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    img {
+      width: 45px;
+      height: 45px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .name {
+      text-transform: capitalize;
+      font-weight: 500;
+      margin-left: 10px;
+    }
+  }
+
+  .button-see-more {
+    margin: 0 auto 20px;
+    display: block;
+    background-color: $border-light;
+  }
+}

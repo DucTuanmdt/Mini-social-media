@@ -1,0 +1,64 @@
+.container-wrapper {
+  width: calc(min(100%, 1024px));
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.button-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  &:hover {
+    background-color: $background-hover;
+  }
+}
+
+.common-button {
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  transition: 0.2s;
+  background-color: $background-light;
+  cursor: pointer;
+  font-weight: 500;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:disabled {
+    opacity: 0.8;
+  }
+}
+
+.list-reset {
+  list-style: none;
+  padding: 0;
+}
+
+.text-link {
+  color: $dark-blue;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+hr.common-break-line {
+  width: 100%;
+  border: none;
+  height: 1px;
+  margin: 10px 0;
+  background-color: $border-light;
+}
