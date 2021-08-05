@@ -1,15 +1,14 @@
-import Avatar from "./Avatar";
+import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { createPost } from "../../redux/actions/postAction";
+
 import {
   PhotoOutlined,
   LocationOnOutlined,
   InsertEmoticonOutlined,
   LocalOfferOutlined,
 } from "@material-ui/icons";
-
-import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
-
-import { createPost } from "../redux/actions/postAction";
+import Avatar from "../common/Avatar";
 
 function ComposePost({ editMode, onUpdate, oldContent }) {
   const currentUser = useSelector((state) => state.authen.currentUser);

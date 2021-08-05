@@ -2,15 +2,15 @@ import { BrowserRouter, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getCurrentUser } from "./redux/actions/authenAction";
-import PrivateRoute from "./route/PrivateRoute";
 
+import PrivateRoute from "./components/common/PrivateRoute";
+import HorizontalLoader from "./components/common/HorizontalLoader";
+import TopNavigation from "./components/layout/TopNavigation";
 import Home from "./pages/Home";
-import TopNavigation from "./components/TopNavigation";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
-import HorizontalLoader from "./components/HorizontalLoader";
 
 import { getLocalUser } from "./utils/user";
 

@@ -1,18 +1,18 @@
-import Avatar from "./Avatar";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   MoreHorizOutlined,
   ThumbUpAltOutlined,
   ChatBubbleOutline,
   ShareOutlined,
 } from "@material-ui/icons";
-import { formatTimeAgo, isValidDate } from "../utils/format";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import SimpleDialog from "./SimpleDialog";
+import Avatar from "../common/Avatar";
+import SimpleDialog from "../common/SimpleDialog";
 import ComposePost from "./ComposePost";
+import { formatTimeAgo, isValidDate } from "../../utils/format";
 // import PostComment from "./PostComment";
-import { deletePost, updatePost } from "../redux/actions/postAction";
+import { deletePost, updatePost } from "../../redux/actions/postAction";
 
 function Post({
   id,

@@ -1,9 +1,9 @@
-import Avatar from "../components/Avatar";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../redux/actions/authenAction";
-import SimpleDialog from "../components/SimpleDialog";
+import Avatar from "../components/common/Avatar";
+import SimpleDialog from "../components/common/SimpleDialog";
 
 function Register() {
   const currentUser = useSelector((state) => state.authen.currentUser);

@@ -1,4 +1,4 @@
-import AccountName from "./AccountName";
+import AccountName from "../common/AccountName";
 import { useSelector } from "react-redux";
 
 function Rightbar() {

@@ -1,6 +1,6 @@
-import Sidebar from "../components/Sidebar";
-import NewFeed from "../components/NewFeed";
-import Rightbar from "../components/Rightbar";
+import Sidebar from "../components/layout/Sidebar";
+import NewsFeed from "../components/news-feed/NewsFeed";
+import Rightbar from "../components/layout/Rightbar";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -72,7 +72,7 @@ function Home() {
   return (
     <div className="home-container">
       <Sidebar></Sidebar>
-      <NewFeed></NewFeed>
+      <NewsFeed></NewsFeed>
       <Rightbar></Rightbar>
     </div>
   );
