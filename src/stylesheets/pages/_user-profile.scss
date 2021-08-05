@@ -1,0 +1,27 @@
+.user-profile {
+  width: calc(min(100%, 940px));
+  margin: 0 auto;
+  .content-container {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (min-width: $min-tablet) {
+  .user-profile {
+    .content-container {
+      grid-template-columns: 1fr 500px;
+    }
+    .new-feed {
+      padding-top: 0;
+      padding-left: 0;
+    }
+  }
+}
+@media screen and (min-width: $min-desktop) {
+  .user-profile {
+    .content-container {
+      grid-template-columns: 1fr 600px;
+    }
+  }
+}
