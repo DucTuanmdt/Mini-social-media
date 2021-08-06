@@ -27,13 +27,13 @@ function ComposePost({ editMode, onUpdate, oldContent }) {
     if (!loading && !error) {
       setPostContent("");
     }
-  }, [loading]);
+  }, [loading, error]);
 
   useEffect(() => {
     if (editMode) {
       setPostContent(oldContent);
     }
-  }, []);
+  }, [oldContent, editMode]);
 
   function handleInput(event) {
     setPostContent(event.target.value);

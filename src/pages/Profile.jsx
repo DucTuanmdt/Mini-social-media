@@ -21,7 +21,7 @@ function Profile() {
     dispatch(getPostByUserId(userId));
     dispatch(getFriendsOnline());
     scrollToTop();
-  }, [userId]);
+  }, [userId, dispatch]);
 
   return (
     <div className="user-profile">

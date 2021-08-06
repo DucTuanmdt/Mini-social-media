@@ -21,13 +21,13 @@ function App() {
 
   useEffect(() => {
     dispatch(getCurrentUser());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (isLogin && !currentUser) {
       setIsLogin(false);
     }
-  }, [currentUser]);
+  }, [currentUser, isLogin]);
 
   return (
     <BrowserRouter>
