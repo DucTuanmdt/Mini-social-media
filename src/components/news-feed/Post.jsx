@@ -1,18 +1,18 @@
-import Avatar from "./Avatar";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   MoreHorizOutlined,
   ThumbUpAltOutlined,
   ChatBubbleOutline,
   ShareOutlined,
 } from "@material-ui/icons";
-import { formatTimeAgo, isValidDate } from "../utils/format";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import SimpleDialog from "./SimpleDialog";
+import Avatar from "../common/Avatar";
+import SimpleDialog from "../common/SimpleDialog";
 import ComposePost from "./ComposePost";
+import { formatTimeAgo, isValidDate } from "../../utils/format";
 // import PostComment from "./PostComment";
-import { deletePost, updatePost } from "../redux/actions/postAction";
+import { deletePost, updatePost } from "../../redux/actions/postAction";
 
 function Post({
   id,
@@ -90,24 +90,34 @@ function Post({
           </Link>
           <span className="post-time">{formatTimeAgo(timePosted)}</span>
         </div>
-        <div className="more-option button-icon">
+        <div className="more-option button-icon" data-testid="more-option">
           <MoreHorizOutlined />
-          <ul className="post-menu list-reset">
+          <ul
+            role="menu"
+            className="post-menu list-reset"
+            data-testid="menu-option"
+          >
             {author.id === currentUser.id && (
               <>
-                <li className="item" onClick={handleEditPost}>
+                <li role="menuitem" className="item" onClick={handleEditPost}>
                   Edit
                 </li>
-                <li className="item" onClick={handleDeletePost}>
+                <li role="menuitem" className="item" onClick={handleDeletePost}>
                   Delete
                 </li>
               </>
             )}
-            <li className="item">Embed</li>
+            <li role="menuitem" className="item">
+              Embed
+            </li>
             {author.id !== currentUser.id && (
               <>
-                <li className="item">Hide post</li>
-                <li className="item">Report</li>
+                <li role="menuitem" className="item">
+                  Hide post
+                </li>
+                <li role="menuitem" className="item">
+                  Report
+                </li>
               </>
             )}
           </ul>

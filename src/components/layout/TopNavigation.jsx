@@ -7,10 +7,10 @@ import {
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { clearUser } from "../utils/user";
-import usePathname from "../hooks/usePathName";
+import { clearUser } from "../../utils/user";
+import usePathname from "../../hooks/usePathName";
 
-import AccountName from "./AccountName";
+import AccountName from "../common/AccountName";
 
 function TopNavigation() {
   const currentPath = usePathname();

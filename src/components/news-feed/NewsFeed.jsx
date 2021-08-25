@@ -2,7 +2,7 @@ import ComposePost from "./ComposePost";
 import Post from "./Post";
 import { useSelector } from "react-redux";
 
-function NewFeed() {
+function NewsFeed() {
   const listPost = useSelector((state) => state.post.listPost);
   return (
     <div className="new-feed">
@@ -13,4 +13,4 @@ function NewFeed() {
   );
 }
 
-export default NewFeed;
+export default NewsFeed;

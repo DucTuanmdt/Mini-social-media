@@ -1,9 +1,9 @@
-import Avatar from "../components/Avatar";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../redux/actions/authenAction";
-import SimpleDialog from "../components/SimpleDialog";
+import Avatar from "../components/common/Avatar";
+import SimpleDialog from "../components/common/SimpleDialog";
 
 function Register() {
   const currentUser = useSelector((state) => state.authen.currentUser);
@@ -18,6 +18,15 @@ function Register() {
   });
 
   useEffect(() => {
+    function checkValidForm() {
+      for (let key in state) {
+        let value = state[key];
+        if (!value.length && !value.trim().length) {
+          return false;
+        }
+      }
+      return state.password === state.confirmPassword;
+    }
     setEnableRegister(checkValidForm());
   }, [state]);
 
@@ -37,16 +46,6 @@ function Register() {
     if (enableRegister) {
       dispatch(register(state));
     }
-  }
-
-  function checkValidForm() {
-    for (let key in state) {
-      let value = state[key];
-      if (!value.length && !value.trim().length) {
-        return false;
-      }
-    }
-    return state.password === state.confirmPassword;
   }
 
   function handleClosePopup() {

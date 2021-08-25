@@ -1,4 +1,4 @@
-import Avatar from "../components/Avatar";
+import Avatar from "../components/common/Avatar";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";

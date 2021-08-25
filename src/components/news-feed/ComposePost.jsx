@@ -1,15 +1,14 @@
-import Avatar from "./Avatar";
+import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { createPost } from "../../redux/actions/postAction";
+
 import {
   PhotoOutlined,
   LocationOnOutlined,
   InsertEmoticonOutlined,
   LocalOfferOutlined,
 } from "@material-ui/icons";
-
-import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
-
-import { createPost } from "../redux/actions/postAction";
+import Avatar from "../common/Avatar";
 
 function ComposePost({ editMode, onUpdate, oldContent }) {
   const currentUser = useSelector((state) => state.authen.currentUser);
@@ -28,13 +27,13 @@ function ComposePost({ editMode, onUpdate, oldContent }) {
     if (!loading && !error) {
       setPostContent("");
     }
-  }, [loading]);
+  }, [loading, error]);
 
   useEffect(() => {
     if (editMode) {
       setPostContent(oldContent);
     }
-  }, []);
+  }, [oldContent, editMode]);
 
   function handleInput(event) {
     setPostContent(event.target.value);
@@ -80,6 +79,7 @@ function ComposePost({ editMode, onUpdate, oldContent }) {
           placeholder="Let's everyone know here"
           onInput={handleInput}
           value={postContent}
+          data-testid="post-input"
         />
       </div>
       <ul className="aditional-option">

@@ -1,11 +1,6 @@
 import { apiCall } from "./apiGateway";
 import { API_METHOD } from "../utils/constant";
 
-// // ! WARNING: Temporary logic because there are no BE server yet
-// export function loginApi(id) {
-//   return apiCall({ url: `/users/${id}`, method: API_METHOD.GET });
-// }
-
 export function getUserApi(id) {
   return apiCall({ url: `/users/${id}`, method: API_METHOD.GET });
 }

@@ -1,7 +1,7 @@
-import Sidebar from "../components/Sidebar";
-import NewFeed from "../components/NewFeed";
-import Rightbar from "../components/Rightbar";
-import { useEffect, useState } from "react";
+import Sidebar from "../components/layout/Sidebar";
+import NewsFeed from "../components/news-feed/NewsFeed";
+import Rightbar from "../components/layout/Rightbar";
+import { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getFriendsOnline,
@@ -19,10 +19,20 @@ function Home() {
   const pageSize = 5;
   const timeOut = 5000;
 
+  const loadMore = useCallback(
+    (length) => {
+      let maxSize = length || remainUser;
+      if (maxSize > 0) {
+        dispatch(loadMorePost({ listUser, pageSize, remainUser: maxSize }));
+      }
+    },
+    [remainUser, listUser, dispatch]
+  );
+
   useEffect(() => {
     dispatch(getFriendsOnline());
     dispatch(getShortcurt());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     const length = listUser.length;
@@ -32,10 +42,21 @@ function Home() {
       setRemainUser(length - 2 - pageSize);
       loadMore(length - 2);
     }
-  }, [listUser]);
+  }, [listUser, loadMore, dispatch]);
 
   useEffect(() => {
     loadMore();
+
+    function calculateNextPage() {
+      let nextValue = remainUser - pageSize;
+      if (nextValue < 0) {
+        nextValue = 0;
+      }
+      setRemainUser(nextValue);
+    }
+
+    // prevent call loadMore too many time, at least 5s per dispatch
+    const throttleLoadMore = throttling(calculateNextPage, timeOut);
 
     function handleScroll() {
       if (
@@ -49,30 +70,12 @@ function Home() {
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [remainUser]);
-
-  function loadMore(length) {
-    let maxSize = length || remainUser;
-    if (maxSize > 0) {
-      dispatch(loadMorePost({ listUser, pageSize, remainUser: maxSize }));
-    }
-  }
-
-  // prevent call loadMore too many time, at least 5s per dispatch
-  const throttleLoadMore = throttling(calculateNextPage, timeOut);
-
-  function calculateNextPage() {
-    let nextValue = remainUser - pageSize;
-    if (nextValue < 0) {
-      nextValue = 0;
-    }
-    setRemainUser(nextValue);
-  }
+  }, [remainUser, loadMore]);
 
   return (
     <div className="home-container">
       <Sidebar></Sidebar>
-      <NewFeed></NewFeed>
+      <NewsFeed></NewsFeed>
       <Rightbar></Rightbar>
     </div>
   );

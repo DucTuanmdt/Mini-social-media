@@ -1,6 +1,13 @@
 import { Close } from "@material-ui/icons";
 
-function Dialog({ children, show, onClose, size, noPadding, showCloseButton }) {
+function SimpleDialog({
+  children,
+  show,
+  onClose,
+  size,
+  noPadding,
+  showCloseButton,
+}) {
   function handleClose() {
     onClose();
   }
@@ -29,8 +36,8 @@ function Dialog({ children, show, onClose, size, noPadding, showCloseButton }) {
   );
 }
 
-Dialog.defaultProps = {
+SimpleDialog.defaultProps = {
   showCloseButton: true,
 };
 
-export default Dialog;
+export default SimpleDialog;
