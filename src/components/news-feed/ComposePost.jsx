@@ -79,6 +79,7 @@ function ComposePost({ editMode, onUpdate, oldContent }) {
           placeholder="Let's everyone know here"
           onInput={handleInput}
           value={postContent}
+          data-testid="post-input"
         />
       </div>
       <ul className="aditional-option">
